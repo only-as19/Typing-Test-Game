@@ -23,8 +23,7 @@ const App = () => {
           setRemainingTime(time => time-1)
         },1000) 
       }else{
-        setTimeRunning(false)
-        setWordCount(calculateWordCount(text.typingText))
+        endGame()
         
       }
       
@@ -33,6 +32,14 @@ const App = () => {
   const changeTimeRunning = ()=>{
     setTimeRunning(true)
     setRemainingTime(5)
+    setTextArea({
+      typingText: ""
+    })
+  }
+
+  const endGame = ()=>{
+    setTimeRunning(false)
+    setWordCount(calculateWordCount(text.typingText))
   }
 
 
