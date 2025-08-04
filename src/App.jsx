@@ -8,6 +8,7 @@ const App = () => {
 
   const[timeRemaining,setRemainingTime] = useState(5)
   const[IsTimeRunning,setTimeRunning] = useState(false)
+  const[word,setWordCount] = useState(0)
   
 
   const handleChnage = (e)=>{
@@ -23,6 +24,7 @@ const App = () => {
         },1000) 
       }else{
         setTimeRunning(false)
+        setWordCount(calculateWordCount(text.typingText))
       }
       
   },[timeRemaining,IsTimeRunning])
@@ -37,6 +39,7 @@ const App = () => {
     const filterWord = wordArr.filter(word => word !== "")
     return filterWord.length
   }
+
   return (
     <div>
       <div className="font-typing text-typing-text bg-black text-center p-4">
@@ -52,7 +55,7 @@ const App = () => {
         className="bg-typing-text text-black py-2.5 px-3.5 block mx-auto"
         onClick={changeTimeRunning}
         >Start</button>
-        <h1 className="text-2xl font-bold m-2">Total Words : </h1>
+        <h1 className="text-2xl font-bold m-2">Total Words : {word}</h1>
       </div>
     </div>
   )
