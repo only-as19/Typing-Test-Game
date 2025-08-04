@@ -6,7 +6,9 @@ const App = () => {
       typingText:""
   })
 
-  const[timeRemaining,setRemainingTime] = useState("5")
+  const[timeRemaining,setRemainingTime] = useState(5)
+  const[IsTimeRunning,setTimeRunning] = useState(false)
+  
 
   const handleChnage = (e)=>{
     setTextArea({
@@ -15,12 +17,20 @@ const App = () => {
   }
 
   useEffect(()=>{
-    if(timeRemaining > 0){
+    if(IsTimeRunning === true && timeRemaining > 0){
         setTimeout(()=>{
           setRemainingTime(time => time-1)
         },1000) 
+      }else{
+        setTimeRunning(false)
       }
-  },[timeRemaining])
+      
+  },[timeRemaining,IsTimeRunning])
+
+  const changeTimeRunning = ()=>{
+    setTimeRunning(true)
+  }
+
 
   const calculateWordCount = (text)=>{
     const wordArr = text.trim().split(" ")
@@ -40,7 +50,7 @@ const App = () => {
         <h4 className="font-bold m-2">Remaining Time: {timeRemaining}</h4>
         <button 
         className="bg-typing-text text-black py-2.5 px-3.5 block mx-auto"
-        onClick={calculateWordCount}
+        onClick={changeTimeRunning}
         >Start</button>
         <h1 className="text-2xl font-bold m-2">Total Words : </h1>
       </div>
