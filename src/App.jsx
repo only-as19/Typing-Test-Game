@@ -12,6 +12,10 @@ const App = () => {
     })
   }
 
+  const calculateWordCount = (text)=>{
+    const wordArr = text.trim().split(" ")
+    return wordArr.length
+  }
   return (
     <div>
       <div className="font-typing text-typing-text bg-black text-center p-4">
@@ -23,8 +27,11 @@ const App = () => {
         onChange={handleChnage}
         />
         <h4 className="font-bold m-2">Remaining Time: </h4>
-        <button className="bg-typing-text text-black py-2.5 px-3.5 block mx-auto">Start</button>
-        <h1 className="text-2xl font-bold m-2">Total Words</h1>
+        <button 
+        className="bg-typing-text text-black py-2.5 px-3.5 block mx-auto"
+        onClick={calculateWordCount}
+        >Start</button>
+        <h1 className="text-2xl font-bold m-2">Total Words : </h1>
       </div>
     </div>
   )
