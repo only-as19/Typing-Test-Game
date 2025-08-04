@@ -1,1 +1,8 @@
 @import "tailwindcss";
+ 
+@theme{
+
+    --font-typing:"Press Start 2P", system-ui;
+    --color-typing-text:#00b800;
+}
+
