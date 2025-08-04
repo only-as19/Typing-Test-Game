@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState,useEffect } from "react"
 
 const App = () => {
   
@@ -6,11 +6,21 @@ const App = () => {
       typingText:""
   })
 
+  const[timeRemaining,setRemainingTime] = useState("5")
+
   const handleChnage = (e)=>{
     setTextArea({
       typingText: e.target.value
     })
   }
+
+  useEffect(()=>{
+    if(timeRemaining > 0){
+        setTimeout(()=>{
+          setRemainingTime(time => time-1)
+        },1000) 
+      }
+  },[timeRemaining])
 
   const calculateWordCount = (text)=>{
     const wordArr = text.trim().split(" ")
@@ -27,7 +37,7 @@ const App = () => {
         className="text-black border outline-none bg-typing-text w-11/12 resize h-56 m-2 p-2" 
         onChange={handleChnage}
         />
-        <h4 className="font-bold m-2">Remaining Time: </h4>
+        <h4 className="font-bold m-2">Remaining Time: {timeRemaining}</h4>
         <button 
         className="bg-typing-text text-black py-2.5 px-3.5 block mx-auto"
         onClick={calculateWordCount}
