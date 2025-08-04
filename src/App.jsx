@@ -14,7 +14,8 @@ const App = () => {
 
   const calculateWordCount = (text)=>{
     const wordArr = text.trim().split(" ")
-    return wordArr.length
+    const filterWord = wordArr.filter(word => word !== "")
+    return filterWord.length
   }
   return (
     <div>
