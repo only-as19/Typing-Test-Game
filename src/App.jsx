@@ -25,12 +25,14 @@ const App = () => {
       }else{
         setTimeRunning(false)
         setWordCount(calculateWordCount(text.typingText))
+        
       }
       
   },[timeRemaining,IsTimeRunning])
 
   const changeTimeRunning = ()=>{
     setTimeRunning(true)
+    setRemainingTime(5)
   }
 
 
