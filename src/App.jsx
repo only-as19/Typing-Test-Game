@@ -9,7 +9,7 @@ const App = () => {
   const[timeRemaining,setRemainingTime] = useState(5)
   const[IsTimeRunning,setTimeRunning] = useState(false)
   const[word,setWordCount] = useState(0)
-  
+  const[state,setState]=useState(true)
 
   const handleChnage = (e)=>{
     setTextArea({
@@ -56,16 +56,19 @@ const App = () => {
         <textarea 
         value={text.typingText}  
         name="typingText"
-        className="text-black border outline-none bg-typing-text w-11/12 resize h-56 m-2 p-2" 
+        className={`border outline-none w-11/12 resize h-56 m-2 p-2 ${!IsTimeRunning ? "bg-disable-cl":"bg-typing-text text-black"}` }
         onChange={handleChnage}
+        disabled={!IsTimeRunning}
         />
         <h4 className="font-bold m-2">Remaining Time: {timeRemaining}</h4>
         <button 
-        className="bg-typing-text text-black py-2.5 px-3.5 block mx-auto"
+      className={`${IsTimeRunning ?"bg-disable-cl":"bg-typing-text text-black"} py-2.5 px-3.5 block mx-auto`}
         onClick={changeTimeRunning}
+        disabled={IsTimeRunning}
         >Start</button>
         <h1 className="text-2xl font-bold m-2">Total Words : {word}</h1>
       </div>
+      
     </div>
   )
 }
