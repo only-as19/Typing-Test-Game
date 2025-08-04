@@ -1,15 +1,15 @@
 import { useState,useEffect, useRef } from "react"
 
 const App = () => {
+  const START_TIME = 15
   
   const[text,setTextArea] = useState({
       typingText:""
   })
 
-  const[timeRemaining,setRemainingTime] = useState(5)
+  const[timeRemaining,setRemainingTime] = useState(START_TIME)
   const[IsTimeRunning,setTimeRunning] = useState(false)
   const[word,setWordCount] = useState(0)
-  const[state,setState]=useState(true)
   const textRef = useRef(null)
 
   const handleChnage = (e)=>{
@@ -30,9 +30,9 @@ const App = () => {
       
   },[timeRemaining,IsTimeRunning])
 
-  const changeTimeRunning = ()=>{
+  const startGame = ()=>{
     setTimeRunning(true)
-    setRemainingTime(5)
+    setRemainingTime(START_TIME)
     setTextArea({
       typingText: ""
     })
@@ -67,7 +67,7 @@ const App = () => {
         <h4 className="font-bold m-2">Remaining Time: {timeRemaining}</h4>
         <button 
       className={`${IsTimeRunning ?"bg-disable-cl":"bg-typing-text text-black"} py-2.5 px-3.5 block mx-auto`}
-        onClick={changeTimeRunning}
+        onClick={startGame}
         disabled={IsTimeRunning}
         >Start</button>
         <h1 className="text-2xl font-bold m-2">Total Words : {word}</h1>
