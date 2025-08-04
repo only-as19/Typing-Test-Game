@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react"
+import { useState,useEffect, useRef } from "react"
 
 const App = () => {
   
@@ -10,6 +10,7 @@ const App = () => {
   const[IsTimeRunning,setTimeRunning] = useState(false)
   const[word,setWordCount] = useState(0)
   const[state,setState]=useState(true)
+  const textRef = useRef(null)
 
   const handleChnage = (e)=>{
     setTextArea({
@@ -35,6 +36,8 @@ const App = () => {
     setTextArea({
       typingText: ""
     })
+    textRef.current.disabled = false
+    textRef.current.focus()
   }
 
   const endGame = ()=>{
@@ -59,6 +62,7 @@ const App = () => {
         className={`border outline-none w-11/12 resize h-56 m-2 p-2 ${!IsTimeRunning ? "bg-disable-cl":"bg-typing-text text-black"}` }
         onChange={handleChnage}
         disabled={!IsTimeRunning}
+        ref={textRef}
         />
         <h4 className="font-bold m-2">Remaining Time: {timeRemaining}</h4>
         <button 
