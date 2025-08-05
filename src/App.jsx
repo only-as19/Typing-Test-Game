@@ -1,8 +1,9 @@
 import { useState,useEffect, useRef } from "react"
+import useCustomHook from "./hooks/customhook"
 
 const App = () => {
-  
-
+  const StartTime = 15 
+  const {text,IsTimeRunning,timeRemaining,handleChnage,textRef,startGame,word} = useCustomHook(StartTime)
   return (
     <div>
       <div className="font-typing text-typing-text bg-black text-center p-4">

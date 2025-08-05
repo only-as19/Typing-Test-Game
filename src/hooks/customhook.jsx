@@ -1,9 +1,10 @@
-function useCustomHook(){
-    const START_TIME = 15
+import { useState,useEffect, useRef } from "react"
+function useCustomHook(StartTime){
+    
   
   const[text,setTextArea] = useState("")
 
-  const[timeRemaining,setRemainingTime] = useState(START_TIME)
+  const[timeRemaining,setRemainingTime] = useState(StartTime)
   const[IsTimeRunning,setTimeRunning] = useState(false)
   const[word,setWordCount] = useState(0)
   const textRef = useRef(null)
@@ -26,10 +27,8 @@ function useCustomHook(){
 
   const startGame = ()=>{
     setTimeRunning(true)
-    setRemainingTime(START_TIME)
-    setTextArea({
-      typingText: ""
-    })
+    setRemainingTime(StartTime)
+    setTextArea("")
     textRef.current.disabled = false
     textRef.current.focus()
   }
